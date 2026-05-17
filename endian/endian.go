@@ -158,14 +158,15 @@ func sizeOf[T Unsigned]() int {
 		return 8
 	}
 	// Fallback for user-defined types: use unsafe-free size detection via
-	// bit shifting. We know T is at most uint64 wide.
-	var v T = ^T(0)
+	// bit shifting. We know T is at most uint64 wide. Convert to uint64
+	// to avoid vet "shift of value too small" warnings.
+	u := uint64(^T(0))
 	switch {
-	case v>>8 == 0:
+	case u>>8 == 0:
 		return 1
-	case v>>16 == 0:
+	case u>>16 == 0:
 		return 2
-	case v>>32 == 0:
+	case u>>32 == 0:
 		return 4
 	default:
 		return 8
