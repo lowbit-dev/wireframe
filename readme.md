@@ -260,9 +260,3 @@ All errors are package-level variables, comparable with `errors.Is`.
 | `ErrFrameTooLarge` | Payload exceeds `MaxPayload` |
 | `ErrInvalidData`   | Malformed data               |
 | `ErrOverflow`      | Value out of range           |
-
----
-
-## Non-goals
-
-`wireframe` does not provide RPC systems, reflection-based serializers, protocol compilers, network transports, encryption, or compression. Those belong above this layer.
